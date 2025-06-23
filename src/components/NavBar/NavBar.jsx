@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom'
 import './NavBar.css'
 
 const NavBar = () => {
   return (
     <nav className='NavBar'>
-      <p>Triage Manager</p>
+      <Link to='/' className='logo'>Triage Manager</Link>
     </nav>
   )
 }
