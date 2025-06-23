@@ -2,9 +2,9 @@ import './NavBar.css'
 
 const NavBar = () => {
   return (
-    <div className='NavBar'>
+    <nav className='NavBar'>
       <p>Triage Manager</p>
-    </div>
+    </nav>
   )
 }
 
