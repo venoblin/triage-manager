@@ -16,7 +16,8 @@ const TriageRoute = () => {
 
   useEffect(() => {
     getTriage()
-  }, [])
+    console.log('hi')
+  }, [appContext])
 
   return (
     <div className='TriageRoute'>
