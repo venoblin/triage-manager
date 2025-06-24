@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../../contexts/AppContext'
-import './NewTriage.css'
+import './NewTriageRoute.css'
 
-const NewTriage = () => {
+const NewTriageRoute = () => {
   const appContext = useContext(AppContext)
   const navigate = useNavigate()
   
@@ -29,7 +29,7 @@ const NewTriage = () => {
   }
   
   return (
-    <div className='NewTriage'>
+    <div className='NewTriageRoute'>
       <form onSubmit={handleSubmit}>
         <label htmlFor='name'>Name</label>
         <input 
@@ -46,4 +46,4 @@ const NewTriage = () => {
   )
 }
 
-export default NewTriage
+export default NewTriageRoute
