@@ -7,7 +7,7 @@ export const AppProvider = (props) => {
   const [triages, setTriages] = useState([])
 
   const addTriage = (newTriage) => {
-    const updatedTriages = [...triages, newTriage]
+    const updatedTriages = [...triages, {...newTriage, idx: triages.length}]
     
     setTriages(updatedTriages)
     setStorageItem('triages', updatedTriages)
