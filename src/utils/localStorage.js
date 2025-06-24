@@ -1,7 +1,7 @@
-const storageGetItem = (key) => {
+export const storageGetItem = (key) => {
   return JSON.parse(window.localStorage.getItem(key))
 }
 
-const storageSetItem = (key, item) => {
+export const storageSetItem = (key, item) => {
   window.localStorage.setItem(key, JSON.stringify(item))
 }
