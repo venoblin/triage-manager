@@ -30,6 +30,8 @@ const NewTriageRoute = () => {
   
   return (
     <div className='NewTriageRoute'>
+      <h1>Create New Triage</h1>
+      
       <form onSubmit={handleSubmit}>
         <label htmlFor='name'>Name</label>
         <input 
