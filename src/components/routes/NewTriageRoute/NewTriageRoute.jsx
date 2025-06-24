@@ -19,7 +19,7 @@ const NewTriageRoute = () => {
 
     setFormState(initialFormState)
 
-    navigate('/')
+    navigate(`/triage/${appContext.triages.length}`)
   }
 
   const handleChange = (evt) => {
