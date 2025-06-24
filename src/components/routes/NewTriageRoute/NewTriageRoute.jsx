@@ -15,11 +15,11 @@ const NewTriageRoute = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    appContext.addTriage(formState)
+    const newTriage = appContext.postTriage(formState)
 
     setFormState(initialFormState)
 
-    navigate(`/triage/${appContext.triages.length}`)
+    navigate(`/triage/${newTriage.id}`)
   }
 
   const handleChange = (evt) => {

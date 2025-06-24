@@ -4,13 +4,18 @@ import { AppContext } from '../../../contexts/AppContext'
 import './TriageRoute.css'
 
 const TriageRoute = () => {
-  const [triage, setTriage] = useState()
-  
   const appContext = useContext(AppContext)
   const {id} = useParams()
 
+  const [triage, setTriage] = useState()
+  
+
+  const getTriage = () => {
+    setTriage(appContext.getTriage(id))
+  }
+
   useEffect(() => {
-    setTriage(appContext.triages[id])
+    getTriage()
   }, [])
 
   return (
