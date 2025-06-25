@@ -6,5 +6,6 @@
 .no-selected-device {
   position: sticky;
   right: 0;
-  top: 0;
+  top: 50%;
+  bottom: 50%;
 }/*# sourceMappingURL=DeviceEditor.css.map */
