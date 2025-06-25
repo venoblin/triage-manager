@@ -42,8 +42,8 @@ const TriageRoute = () => {
           <h1>{triage.name}</h1>
 
           {triage.devices && triage.devices.length ? (
-            triage.devices.map((device) => (
-              <div className='device-card'>
+            triage.devices.map((device, idx) => (
+              <div className='device-card' key={idx}>
                 <p>{device.hostName}</p>
               </div>
             ))

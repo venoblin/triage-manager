@@ -12,11 +12,14 @@ function App() {
     <>
       <NavBar />
 
-      <Routes>
-        <Route path='/' element={<HomeRoute />} />
-        <Route path='/triage/new' element={<NewTriageRoute />} />
-        <Route path='/triage/:id' element={<TriageRoute />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path='/' element={<HomeRoute />} />
+          <Route path='/triage/new' element={<NewTriageRoute />} />
+          <Route path='/triage/:id' element={<TriageRoute />} />
+        </Routes>
+      </main>
+      
     </>
   )
 }
