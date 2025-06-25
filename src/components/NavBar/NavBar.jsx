@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 import './NavBar.css'
 
-const NavBar = () => {
-  const [SubBarComponent, setSubBarComponent] = useState(null)
+const NavBar = (props) => {
   
   return (
     <nav className='NavBar'>
@@ -11,9 +9,9 @@ const NavBar = () => {
         <Link to='/' className='logo'>Triage Manager</Link>
       </div>
 
-      {SubBarComponent && (
+      {props.subBarComponent && (
         <div className='sub-bar'>
-          {SubBarComponent}
+          {props.subBarComponent}
         </div>
       )}
     </nav>

@@ -1,16 +1,17 @@
-import { Routes } from 'react-router-dom'
-import { Route } from 'react-router-dom'
-import NavBar from './components/NavBar/NavBar'
+import { useContext } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { LayoutContext } from './contexts/LayoutContext'
 import HomeRoute from './components/routes/HomeRoute/HomeRoute'
 import NewTriageRoute from './components/routes/NewTriageRoute/NewTriageRoute'
 import TriageRoute from './components/routes/TriageRoute/TriageRoute'
 import './styles/App.css'
 
-function App() {
+const App = () => {
+  const layoutContext = useContext(LayoutContext)
 
   return (
     <>
-      <NavBar />
+      <layoutContext.NavBar />
 
       <main>
         <Routes>
