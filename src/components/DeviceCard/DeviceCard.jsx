@@ -1,3 +1,4 @@
+import DevicePaths from '../DevicePaths/DevicePaths'
 import './DeviceCard.css'
 
 const DeviceCard = (props) => {
@@ -12,15 +13,11 @@ const DeviceCard = (props) => {
 
       <button onClick={selectDevice}>Edit</button>
 
-      <div className='paths-wrap'>
-        {props.device.paths.length ? (
-          (props.device.paths.map((path, idx) => (
-            <p className='path' key={idx}>{`${idx + 1}`}</p>
-          )))
-        ) : (
-          <p>There are no paths!</p>
-        )}
-      </div>
+      {props.device.paths.length ? (
+        <DevicePaths device={props.device} />
+      ) : (
+        <p>There are no paths!</p>
+      )}
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import DeviceCard from '../DeviceCard/DeviceCard'
 import './DeviceEditor.css'
+import DevicePaths from '../DevicePaths/DevicePaths'
 
 const DeviceEditor = (props) => {
   const initialFormState = {
@@ -58,8 +59,10 @@ const DeviceEditor = (props) => {
       <div className='device-editor'>
         {selectedDevice ? (
           <div className='editor'>
+            <h2>{selectedDevice.hostName}</h2>
+            
             <div className='device-paths'>
-              <p>{selectedDevice.hostName}</p>
+              <DevicePaths device={selectedDevice} />
             </div>
             <button onClick={handleCreatePath}>Create Path</button>
           </div>
