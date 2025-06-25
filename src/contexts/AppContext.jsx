@@ -63,10 +63,6 @@ export const AppProvider = (props) => {
     return foundTriage
   }
 
-  const updateNavbar = (component) => {
-
-  }
-
   useEffect(() => {
     const storageTriages = getStorageItem('triages')
     if (storageTriages) setTriages(storageTriages)

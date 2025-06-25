@@ -3,4 +3,11 @@
   margin: 0.5rem 0;
   max-width: 750px;
   padding: 1rem;
+  border: 1px solid transparent;
+  transition: border 0.3s ease-in-out;
+
+  &.selected {
+    border-color: red;
+  }
 }
+

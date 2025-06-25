@@ -8,7 +8,7 @@ const DeviceCard = (props) => {
   }
 
   return (
-    <div className='DeviceCard'>
+    <div className={`DeviceCard ${props.selectedDevice && props.selectedDevice.id === props.device.id ? 'selected' : ''}`}>
       <h2>{props.device.hostName}</h2>
 
       <button onClick={selectDevice}>Edit</button>

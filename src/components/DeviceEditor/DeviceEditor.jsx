@@ -53,6 +53,7 @@ const DeviceEditor = (props) => {
               triage={props.triage} 
               device={device} 
               key={idx}
+              selectedDevice={selectedDevice}
               setSelectedDevice={setSelectedDevice}
             />
           ))
