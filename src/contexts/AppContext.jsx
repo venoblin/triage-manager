@@ -26,8 +26,28 @@ export const AppProvider = (props) => {
     const updatedTriages = [...triages]
 
     for (let i = 0; i < updatedTriages.length; i++) {
+
       if (updatedTriages[i].id === triageId) {
-        updatedTriages[i].devices.push({...payload, paths: [], destination: null})
+        updatedTriages[i].devices.push({...payload, id: uuid(), paths: [], destination: null})
+        break
+      }
+    }
+
+    refreshTriages(updatedTriages)
+  }
+
+  const generatePath = (triageId, deviceId) => {
+    const updatedTriages = [...triages]
+
+    for (let i = 0; i < updatedTriages.length; i++) {
+      if (updatedTriages[i].id === triageId) {
+        for (let j = 0; j < updatedTriages[i].devices.length; j++) {
+          if (updatedTriages[i].devices[j].id === deviceId) {
+            updatedTriages[i].devices[j].paths.push([])
+          }
+          break
+        }
+        break
       }
     }
 
@@ -52,7 +72,8 @@ export const AppProvider = (props) => {
       triages, 
       postTriage,
       getTriage,
-      postDevice
+      postDevice,
+      generatePath
     }}>
       {props.children}
     </AppContext.Provider>

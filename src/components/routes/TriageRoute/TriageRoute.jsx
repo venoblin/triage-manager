@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../../contexts/AppContext'
+import DeviceCard from '../../DeviceCard/DeviceCard'
 import './TriageRoute.css'
 
 const TriageRoute = () => {
@@ -43,9 +44,7 @@ const TriageRoute = () => {
 
           {triage.devices && triage.devices.length ? (
             triage.devices.map((device, idx) => (
-              <div className='device-card' key={idx}>
-                <p>{device.hostName}</p>
-              </div>
+              <DeviceCard triage={triage} device={device} key={idx} />
             ))
           ) : (
             <p>No devices!</p>
