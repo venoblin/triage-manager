@@ -6,25 +6,60 @@ import './TriageRoute.css'
 const TriageRoute = () => {
   const appContext = useContext(AppContext)
   const {id} = useParams()
-
-  const [triage, setTriage] = useState()
   
+  const initialFormState = {
+    hostName: ''
+  }
+  const [formState, setFormState] = useState(initialFormState)
+  const [triage, setTriage] = useState()
 
-  const getTriage = () => {
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+
+    setFormState(initialFormState)
+  }
+
+  const handleChange = (evt) => {
+    const target = evt.target
+    const newFormState = {...formState, [target.name]: target.value}
+    setFormState(newFormState)
+  }
+  
+  const populateTriage = () => {
     setTriage(appContext.getTriage(id))
   }
 
   useEffect(() => {
-    getTriage()
-    console.log('hi')
+    populateTriage()
   }, [appContext])
 
   return (
     <div className='TriageRoute'>
       {triage ? (
-        <h1>{triage.name}</h1>
+        <div className='triage-wrap'>
+          <h1>{triage.name}</h1>
+
+          {triage.devices && triage.devices.length ? (
+            <div></div>
+          ) : (
+            <p>No devices!</p>
+          )}
+
+          <form onSubmit={handleSubmit}>
+            <label htmlFor='hostName'>Hostname</label>
+            <input 
+              type='text'
+              name='hostName'
+              id='hostName'
+              value={formState.hostName}
+              onChange={(evt) => handleChange(evt)}
+            />
+
+            <button>Add Device</button>
+          </form>
+        </div>
       ) : (
-        <p>{`No triage found`}</p>
+        <h1>{`No triage found!`}</h1>
       )}
     </div>
   )

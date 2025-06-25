@@ -9,7 +9,7 @@ export const AppProvider = (props) => {
   const [triages, setTriages] = useState([])
 
   const postTriage = (payload) => {
-    const createdTriage = {...payload, id: uuid()}
+    const createdTriage = {...payload, id: uuid(), devices: []}
     const updatedTriages = [...triages, createdTriage]
     
     setTriages(updatedTriages)
