@@ -1,32 +1,14 @@
 import { useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../../contexts/AppContext'
-import DeviceCard from '../../DeviceCard/DeviceCard'
 import './TriageRoute.css'
+import DeviceEditor from '../../DeviceEditor/DeviceEditor'
 
 const TriageRoute = () => {
   const appContext = useContext(AppContext)
   const {id} = useParams()
   
-  const initialFormState = {
-    hostName: ''
-  }
-  const [formState, setFormState] = useState(initialFormState)
   const [triage, setTriage] = useState()
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault()
-
-    appContext.postDevice(triage.id, formState)
-
-    setFormState(initialFormState)
-  }
-
-  const handleChange = (evt) => {
-    const target = evt.target
-    const newFormState = {...formState, [target.name]: target.value}
-    setFormState(newFormState)
-  }
   
   const populateTriage = () => {
     setTriage(appContext.getTriage(id))
@@ -42,26 +24,8 @@ const TriageRoute = () => {
         <div className='triage-wrap'>
           <h1>{triage.name}</h1>
 
-          {triage.devices && triage.devices.length ? (
-            triage.devices.map((device, idx) => (
-              <DeviceCard triage={triage} device={device} key={idx} />
-            ))
-          ) : (
-            <p>No devices!</p>
-          )}
-
-          <form onSubmit={handleSubmit}>
-            <label htmlFor='hostName'>Hostname</label>
-            <input 
-              type='text'
-              name='hostName'
-              id='hostName'
-              value={formState.hostName}
-              onChange={(evt) => handleChange(evt)}
-            />
-
-            <button>Add Device</button>
-          </form>
+          <DeviceEditor triage={triage} />
+          
         </div>
       ) : (
         <h1>{`No triage found!`}</h1>

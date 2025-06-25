@@ -4,10 +4,6 @@ import './DeviceCard.css'
 
 const DeviceCard = (props) => {
   const appContext = useContext(AppContext)
-  
-  const handleCreatePath = () => {
-    appContext.generatePath(props.triage.id, props.device.id)
-  }
 
   return (
     <div className='DeviceCard'>
@@ -22,8 +18,6 @@ const DeviceCard = (props) => {
           <p>There are no paths!</p>
         )}
       </div>
-
-      <button onClick={handleCreatePath}>Create Path</button>
     </div>
   )
 }
