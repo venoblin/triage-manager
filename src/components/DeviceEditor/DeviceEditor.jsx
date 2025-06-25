@@ -7,6 +7,7 @@ const DeviceEditor = (props) => {
     hostName: ''
   }
   const [formState, setFormState] = useState(initialFormState)
+  const [selectedDevice, setSelectedDevice] = useState(null)
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
@@ -42,7 +43,12 @@ const DeviceEditor = (props) => {
         </form>
         {props.triage.devices && props.triage.devices.length ? (
           props.triage.devices.map((device, idx) => (
-            <DeviceCard triage={props.triage} device={device} key={idx} />
+            <DeviceCard 
+              triage={props.triage} 
+              device={device} 
+              key={idx}
+              setSelectedDevice={setSelectedDevice}
+            />
           ))
         ) : (
           <p>No devices!</p>
@@ -50,7 +56,16 @@ const DeviceEditor = (props) => {
       </div>
 
       <div className='device-editor'>
-        <button onClick={handleCreatePath}>Create Path</button>
+        {selectedDevice ? (
+          <div className='editor'>
+            <div className='device-paths'>
+              <p>{selectedDevice.hostName}</p>
+            </div>
+            <button onClick={handleCreatePath}>Create Path</button>
+          </div>
+        ) : (
+          <p>No selected device!</p>
+        )}
       </div>
     </div>
   )

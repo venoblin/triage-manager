@@ -1,13 +1,16 @@
-import { useContext } from 'react'
-import { AppContext } from '../../contexts/AppContext'
 import './DeviceCard.css'
 
 const DeviceCard = (props) => {
-  const appContext = useContext(AppContext)
+
+  const selectDevice = () => {
+    props.setSelectedDevice(props.device)
+  }
 
   return (
     <div className='DeviceCard'>
       <h2>{props.device.hostName}</h2>
+
+      <button onClick={selectDevice}>Edit</button>
 
       <div className='paths-wrap'>
         {props.device.paths.length ? (
