@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { AppContext } from '../../contexts/AppContext'
+import DevicePaths from '../DevicePaths/DevicePaths'
 import DeviceCard from '../DeviceCard/DeviceCard'
 import './DeviceEditor.css'
-import DevicePaths from '../DevicePaths/DevicePaths'
 
 const DeviceEditor = (props) => {
+  const appContext = useContext(AppContext)
+  
   const initialFormState = {
     hostName: ''
   }
@@ -13,7 +16,7 @@ const DeviceEditor = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    appContext.postDevice(triage.id, formState)
+    appContext.postDevice(props.triage.id, formState)
 
     setFormState(initialFormState)
   }
