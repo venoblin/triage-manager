@@ -11,12 +11,12 @@ const DeviceCard = (props) => {
 
   return (
     <div className='DeviceCard'>
-      <p>{props.device.hostName}</p>
+      <h2>{props.device.hostName}</h2>
 
-      <div className='paths'>
+      <div className='paths-wrap'>
         {props.device.paths.length ? (
           (props.device.paths.map((path, idx) => (
-            <p>{`${idx + 1}`}</p>
+            <p className='path' key={idx}>{`${idx + 1}`}</p>
           )))
         ) : (
           <p>There are no paths!</p>

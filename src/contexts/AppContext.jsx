@@ -44,8 +44,9 @@ export const AppProvider = (props) => {
         for (let j = 0; j < updatedTriages[i].devices.length; j++) {
           if (updatedTriages[i].devices[j].id === deviceId) {
             updatedTriages[i].devices[j].paths.push([])
+            
+            break
           }
-          break
         }
         break
       }
