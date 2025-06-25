@@ -3,7 +3,7 @@ import { useState } from 'react'
 import './NavBar.css'
 
 const NavBar = () => {
-  const [subBar, setSubBar] = useState(null)
+  const [SubBarComponent, setSubBarComponent] = useState(null)
   
   return (
     <nav className='NavBar'>
@@ -11,7 +11,11 @@ const NavBar = () => {
         <Link to='/' className='logo'>Triage Manager</Link>
       </div>
 
-      {subBar && <subBar />}
+      {SubBarComponent && (
+        <div className='sub-bar'>
+          {SubBarComponent}
+        </div>
+      )}
     </nav>
   )
 }
