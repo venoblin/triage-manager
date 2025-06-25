@@ -1,3 +1,11 @@
 .DeviceEditor {
   display: flex;
+}
+
+.editor {
+  position: sticky;
+  right: 0;
+  top: 50%;
+  bottom: 50%;
+  margin-right: 10rem;
 }/*# sourceMappingURL=DeviceEditor.css.map */
