@@ -1,9 +1,12 @@
 .NavBar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.main-bar {
   padding: 2rem 1rem;
   background: black;
   display: flex;
   justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
 }/*# sourceMappingURL=NavBar.css.map */

@@ -2,7 +2,8 @@
   display: flex;
 }
 
-.editor {
+.editor,
+.no-selected-device {
   position: sticky;
   right: 0;
   top: 50%;

@@ -28,7 +28,9 @@ const DeviceEditor = (props) => {
   }
 
   const handleCreatePath = () => {
-    appContext.generatePath(props.triage.id, props.device.id)
+    if (selectedDevice) {
+      appContext.generatePath(props.triage.id, selectedDevice.id)
+    }
   }
   
   return (
@@ -70,7 +72,7 @@ const DeviceEditor = (props) => {
             <button onClick={handleCreatePath}>Create Path</button>
           </div>
         ) : (
-          <p>No selected device!</p>
+          <p className='no-selected-device'>No selected device!</p>
         )}
       </div>
     </div>
