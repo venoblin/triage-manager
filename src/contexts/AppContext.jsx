@@ -8,14 +8,30 @@ export const AppContext = createContext()
 export const AppProvider = (props) => {
   const [triages, setTriages] = useState([])
 
+  const refreshTriages = (updatedTriages) => {
+    setTriages(updatedTriages)
+    setStorageItem('triages', updatedTriages)
+  }
+
   const postTriage = (payload) => {
     const createdTriage = {...payload, id: uuid(), devices: []}
     const updatedTriages = [...triages, createdTriage]
     
-    setTriages(updatedTriages)
-    setStorageItem('triages', updatedTriages)
+    refreshTriages(updatedTriages)
 
     return createdTriage
+  }
+
+  const postDevice = (triageId, payload) => {
+    const updatedTriages = [...triages]
+
+    for (let i = 0; i < updatedTriages.length; i++) {
+      if (updatedTriages[i].id === triageId) {
+        updatedTriages[i].devices.push({...payload, paths: [], destination: null})
+      }
+    }
+
+    refreshTriages(updatedTriages)
   }
 
   const getTriage = (id) => {
@@ -35,7 +51,8 @@ export const AppProvider = (props) => {
     <AppContext.Provider value={{
       triages, 
       postTriage,
-      getTriage
+      getTriage,
+      postDevice
     }}>
       {props.children}
     </AppContext.Provider>

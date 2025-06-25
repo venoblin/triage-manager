@@ -16,6 +16,8 @@ const TriageRoute = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
+    appContext.postDevice(triage.id, formState)
+
     setFormState(initialFormState)
   }
 
@@ -40,7 +42,11 @@ const TriageRoute = () => {
           <h1>{triage.name}</h1>
 
           {triage.devices && triage.devices.length ? (
-            <div></div>
+            triage.devices.map((device) => (
+              <div className='device-card'>
+                <p>{device.hostName}</p>
+              </div>
+            ))
           ) : (
             <p>No devices!</p>
           )}
