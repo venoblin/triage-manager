@@ -7,25 +7,7 @@ import './DeviceEditor.css'
 const DeviceEditor = (props) => {
   const appContext = useContext(AppContext)
   
-  const initialFormState = {
-    hostName: ''
-  }
-  const [formState, setFormState] = useState(initialFormState)
   const [selectedDevice, setSelectedDevice] = useState(null)
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault()
-
-    appContext.postDevice(props.triage.id, formState)
-
-    setFormState(initialFormState)
-  }
-
-  const handleChange = (evt) => {
-    const target = evt.target
-    const newFormState = {...formState, [target.name]: target.value}
-    setFormState(newFormState)
-  }
 
   const handleCreatePath = () => {
     if (selectedDevice) {
@@ -36,17 +18,6 @@ const DeviceEditor = (props) => {
   return (
     <div className='DeviceEditor'>
       <div className='device-selector'>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor='hostName'>Hostname</label>
-          <input 
-            type='text'
-            name='hostName'
-            id='hostName'
-            value={formState.hostName}
-            onChange={(evt) => handleChange(evt)}
-          />
-          <button>Add Device</button>
-        </form>
         {props.triage.devices && props.triage.devices.length ? (
           props.triage.devices.map((device, idx) => (
             <DeviceCard 

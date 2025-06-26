@@ -1,24 +1,21 @@
 import { createContext, useState } from 'react'
-import Nav from '../components/NavBar/NavBar'
+import NavBar from '../components/NavBar/NavBar'
 
 export const LayoutContext = createContext()
 
 export const LayoutProvider = (props) => {
-  const [SubBarComponent, setSubBarComponent] = useState(null)
+  const [subBar, setSubBar] = useState(null)
   
-  const setSubBar = (component) => {
-    setSubBarComponent(component)
-  }
-
-  const NavBar = () => {
-    return Nav({props: {SubBarComponent}})
+  const addSubBar = (component) => {
+    setSubBar(component)
   }
 
   return (
     <LayoutContext.Provider value={{
-      NavBar,
-      setSubBar
+      addSubBar
     }}>
+      <NavBar subBar={subBar} />
+
       {props.children}
     </LayoutContext.Provider>
   )
