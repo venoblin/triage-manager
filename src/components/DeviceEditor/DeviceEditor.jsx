@@ -38,10 +38,11 @@ const DeviceEditor = (props) => {
           <div className='editor'>
             <h2>{selectedDevice.hostName}</h2>
             
+            <button onClick={handleCreatePath}>Create Path</button>
+            
             <div className='device-paths'>
               <DevicePaths device={selectedDevice} />
             </div>
-            <button onClick={handleCreatePath}>Create Path</button>
           </div>
         ) : (
           <p className='no-selected-device'>No selected device!</p>
