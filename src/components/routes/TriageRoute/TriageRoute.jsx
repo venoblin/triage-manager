@@ -55,6 +55,10 @@ const TriageRoute = () => {
   useEffect(() => {
     populateTriage()
     addSubBar()
+
+    return () => {
+      layoutContext.addSubBar(null)
+    }
   }, [appContext])
 
   return (
