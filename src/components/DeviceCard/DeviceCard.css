@@ -3,7 +3,7 @@
   margin: 0.5rem 0;
   max-width: 750px;
   padding: 1rem;
-  border: 1px solid transparent;
+  border: 1px solid gray;
   transition: border 0.2s ease-in-out;
 }
 .DeviceCard.selected {

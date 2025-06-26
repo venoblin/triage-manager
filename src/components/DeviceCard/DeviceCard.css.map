@@ -1,1 +1,1 @@
-{"version":3,"sources":["DeviceCard.scss","DeviceCard.css"],"names":[],"mappings":"AAAA;EACE,iBAAA;EACA,gBAAA;EACA,gBAAA;EACA,aAAA;EACA,6BAAA;EACA,mCAAA;ACCF;ADCE;EACE,iBAAA;ACCJ","file":"DeviceCard.css"}
+{"version":3,"sources":["DeviceCard.scss","DeviceCard.css"],"names":[],"mappings":"AAAA;EACE,iBAAA;EACA,gBAAA;EACA,gBAAA;EACA,aAAA;EACA,sBAAA;EACA,mCAAA;ACCF;ADCE;EACE,iBAAA;ACCJ","file":"DeviceCard.css"}

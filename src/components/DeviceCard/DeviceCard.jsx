@@ -4,6 +4,7 @@ import './DeviceCard.css'
 
 const DeviceCard = (props) => {
   const [isExpanded, setIsExpanded] = useState(false)
+  const isSelected = props.selectedDevice && props.selectedDevice.id === props.device.id
 
   const selectDevice = () => {
     props.setSelectedDevice(props.device)
@@ -14,12 +15,14 @@ const DeviceCard = (props) => {
   }
 
   return (
-    <div className={`DeviceCard ${props.selectedDevice && props.selectedDevice.id === props.device.id ? 'selected' : ''}`}>
+    <div className={`DeviceCard ${isSelected ? 'selected' : ''}`}>
       <button onClick={toggleExpanded}>Expand</button>
       
       <h2>{props.device.hostName}</h2>
 
-      <button onClick={selectDevice}>Edit</button>
+      {!isSelected && (
+        <button onClick={selectDevice}>Edit</button>
+      )}
 
       {props.device.paths.length ? (
         isExpanded ? (
