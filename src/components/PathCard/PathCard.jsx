@@ -18,16 +18,6 @@ const PathCard = (props) => {
       </div>
       
       <div className={`hops ${isSelected && 'selected'}`}>
-        {props.path.length > 0 ? (
-          <div>
-            <p>Paths</p>
-          </div>
-        ) : (
-          (!isSelected && (
-            <p>There are no hops!</p>
-          ))
-        )}
-
         {isSelected && (
           <form>
             <input
@@ -38,6 +28,16 @@ const PathCard = (props) => {
             />
             <button>Add</button>
           </form>
+        )}
+        
+        {props.path.length > 0 ? (
+          <div>
+            <p>Paths</p>
+          </div>
+        ) : (
+          (!isSelected && (
+            <p>There are no hops!</p>
+          ))
         )}
       </div>
     </div>

@@ -20,4 +20,8 @@
 .hops input {
   width: 150px;
   height: 75px;
+}
+.hops button {
+  width: -moz-fit-content;
+  width: fit-content;
 }/*# sourceMappingURL=PathCard.css.map */
