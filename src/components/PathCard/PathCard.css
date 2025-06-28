@@ -12,4 +12,12 @@
 }
 .hops.selected {
   border-color: red;
+}
+.hops form {
+  display: flex;
+  flex-direction: column;
+}
+.hops input {
+  width: 150px;
+  height: 75px;
 }/*# sourceMappingURL=PathCard.css.map */

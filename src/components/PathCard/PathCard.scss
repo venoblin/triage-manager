@@ -14,4 +14,14 @@
   &.selected {
     border-color: red;
   }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    width: 150px;
+    height: 75px;
+  }
 }
