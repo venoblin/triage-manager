@@ -9,4 +9,9 @@
 .hops {
   width: 100%;
   border: 1px solid gray;
+  transition: border 0.2s ease-in-out;
+
+  &.selected {
+    border-color: red;
+  }
 }

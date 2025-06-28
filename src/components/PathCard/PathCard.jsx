@@ -1,17 +1,24 @@
 import './PathCard.css'
 
 const PathCard = (props) => {
+  const isSelected = props.selectedPath && props.selectedPath.id === props.path.id
+  const isEditMode = props.isEditMode === true
+
+  const selectPath = () => {
+    props.setSelectedPath(props.path)
+  }
+
   return (
-    <div className={`PathCard ${props.isEditMode === true && 'edit-mode'}`}>
+    <div className={`PathCard ${isEditMode && 'edit-mode'}`}>
       <div>
         <p className='position'>{props.position + 1}</p>
-        {props.isEditMode === true && (
-          <button>Edit</button>
+        {isEditMode && !isSelected && (
+          <button onClick={selectPath}>Edit</button>
         )}
       </div>
       
 
-      <div className='hops'></div>
+      <div className={`hops ${isSelected && 'selected'}`}></div>
     </div>
   )
 }

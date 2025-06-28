@@ -55,7 +55,7 @@ const DeviceEditor = (props) => {
             <DeviceCard 
               triage={props.triage} 
               device={device} 
-              key={idx}
+              key={device.id}
               selectedDevice={selectedDevice}
               setSelectedDevice={setSelectedDevice}
             />
