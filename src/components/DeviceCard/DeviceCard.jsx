@@ -8,6 +8,7 @@ const DeviceCard = (props) => {
 
   const selectDevice = () => {
     props.setSelectedDevice(props.device)
+    window.scrollTo(0, 0)
   }
 
   const toggleExpanded = () => {
