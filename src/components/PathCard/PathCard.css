@@ -1,4 +1,11 @@
+.PathCard {
+  display: flex;
+}
 .PathCard.edit-mode {
-  border: 1px solid gray;
   padding: 2rem 1rem;
+}
+
+.hops {
+  width: 100%;
+  border: 1px solid gray;
 }/*# sourceMappingURL=PathCard.css.map */

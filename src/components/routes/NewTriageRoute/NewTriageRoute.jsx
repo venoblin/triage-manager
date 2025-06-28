@@ -40,6 +40,7 @@ const NewTriageRoute = () => {
           id='name'
           value={formState.name}
           onChange={(evt) => handleChange(evt)}
+          required
         />
 
         <button>Create</button>

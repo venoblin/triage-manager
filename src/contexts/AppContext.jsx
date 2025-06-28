@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from 'react'
 import { v4 as uuid } from 'uuid'
 import { setStorageItem, getStorageItem } from '../utils/localStorage'
 
-
 export const AppContext = createContext()
 
 export const AppProvider = (props) => {
@@ -42,8 +41,14 @@ export const AppProvider = (props) => {
     for (let i = 0; i < updatedTriages.length; i++) {
       if (updatedTriages[i].id === triageId) {
         for (let j = 0; j < updatedTriages[i].devices.length; j++) {
-          if (updatedTriages[i].devices[j].id === deviceId) {
-            updatedTriages[i].devices[j].paths.push([])
+          const device = updatedTriages[i].devices[j]
+          
+          if (device.id === deviceId) {
+            device.paths.push({
+              id: uuid(), 
+              position: device.paths.length,
+              hops: []
+            })
             
             break
           }

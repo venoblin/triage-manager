@@ -45,6 +45,7 @@ const DeviceEditor = (props) => {
             id='hostName'
             value={formState.hostName}
             onChange={(evt) => handleChange(evt)}
+            required
           />
           <button>Add Device</button>
         </form>
