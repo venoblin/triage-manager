@@ -1,1 +1,4 @@
-/*# sourceMappingURL=PathCard.css.map */
+.PathCard.edit-mode {
+  border: 1px solid gray;
+  padding: 2rem 1rem;
+}/*# sourceMappingURL=PathCard.css.map */

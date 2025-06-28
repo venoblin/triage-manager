@@ -10,7 +10,7 @@ const DevicePaths = (props) => {
           position={idx} 
           triage={props.triage} 
           path={path}
-          editMode={props.editMode}
+          isEditMode={props.isEditMode}
         />
       ))}
     </div>

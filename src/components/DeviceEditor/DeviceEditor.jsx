@@ -71,13 +71,11 @@ const DeviceEditor = (props) => {
             
             <button onClick={handleCreatePath}>Create Path</button>
             
-            <div className='device-paths'>
-              <DevicePaths 
-                device={selectedDevice} 
-                triage={props.triage}
-                editMode={true} 
-              />
-            </div>
+            <DevicePaths 
+              device={selectedDevice} 
+              triage={props.triage}
+              isEditMode={true} 
+            />
           </div>
         ) : (
           <p className='no-selected-device'>No selected device!</p>

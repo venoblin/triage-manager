@@ -2,7 +2,7 @@ import './PathCard.css'
 
 const PathCard = (props) => {
   return (
-    <div className='PathCard'>
+    <div className={`PathCard ${props.isEditMode === true && 'edit-mode'}`}>
       {props.position + 1}
     </div>
   )
