@@ -1,15 +1,16 @@
-import Path from '../Path/Path'
+import PathCard from '../PathCard/PathCard'
 import './DevicePaths.css'
 
 const DevicePaths = (props) => {
   return (
     <div className='DevicePaths'>
       {props.device.paths.map((path, idx) => (
-        <Path 
+        <PathCard 
           key={idx} 
           position={idx} 
           triage={props.triage} 
           path={path}
+          editMode={props.editMode}
         />
       ))}
     </div>

@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { AppContext } from '../../contexts/AppContext'
-import DevicePaths from '../DevicePaths/DevicePaths'
 import DeviceCard from '../DeviceCard/DeviceCard'
+import DevicePaths from '../DevicePaths/DevicePaths'
 import './DeviceEditor.css'
 
 const DeviceEditor = (props) => {
@@ -72,9 +72,10 @@ const DeviceEditor = (props) => {
             <button onClick={handleCreatePath}>Create Path</button>
             
             <div className='device-paths'>
-              <DevicePaths
-                triage={props.triage}
+              <DevicePaths 
                 device={selectedDevice} 
+                triage={props.triage}
+                editMode={true} 
               />
             </div>
           </div>
