@@ -1,11 +1,13 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../contexts/AppContext'
+import { LayoutContext } from '../../contexts/LayoutContext'
 import DeviceCard from '../DeviceCard/DeviceCard'
 import DevicePaths from '../DevicePaths/DevicePaths'
 import './DeviceEditor.css'
 
 const DeviceEditor = (props) => {
   const appContext = useContext(AppContext)
+  const layoutContext = useContext(LayoutContext)
   
   const initialFormState = {
       hostName: ''
@@ -36,7 +38,7 @@ const DeviceEditor = (props) => {
   
   return (
     <div className='DeviceEditor'>
-      <div className='device-selector'>
+      <div className='triage-head'>
         <form onSubmit={handleSubmit}>
           <label htmlFor='hostName'>Hostname</label>
           <input 
@@ -49,38 +51,42 @@ const DeviceEditor = (props) => {
           />
           <button>Add Device</button>
         </form>
-        
-        {props.triage.devices && props.triage.devices.length ? (
-          props.triage.devices.map((device, idx) => (
-            <DeviceCard 
-              triage={props.triage} 
-              device={device} 
-              key={device.id}
-              selectedDevice={selectedDevice}
-              setSelectedDevice={setSelectedDevice}
-            />
-          ))
-        ) : (
-          <p>No devices!</p>
-        )}
       </div>
+      
+      <div className='device-editor-wrap'>
+        <div className='device-selector'>
+          {props.triage.devices && props.triage.devices.length ? (
+            props.triage.devices.map((device, idx) => (
+              <DeviceCard 
+                triage={props.triage} 
+                device={device} 
+                key={device.id}
+                selectedDevice={selectedDevice}
+                setSelectedDevice={setSelectedDevice}
+              />
+            ))
+          ) : (
+            <p>No devices!</p>
+          )}
+        </div>
 
-      <div className='device-editor'>
-        {selectedDevice ? (
-          <div className='editor'>
-            <h2>{selectedDevice.hostName}</h2>
-            
-            <button onClick={handleCreatePath}>Create Path</button>
-            
-            <DevicePaths 
-              device={selectedDevice} 
-              triage={props.triage}
-              isEditMode={true} 
-            />
-          </div>
-        ) : (
-          <p className='no-selected-device'>No selected device!</p>
-        )}
+        <div className='device-editor'>
+          {selectedDevice ? (
+            <div className='editor'>
+              <h2>{selectedDevice.hostName}</h2>
+              
+              <button onClick={handleCreatePath}>Create Path</button>
+              
+              <DevicePaths 
+                device={selectedDevice} 
+                triage={props.triage}
+                isEditMode={true} 
+              />
+            </div>
+          ) : (
+            <p className='no-selected-device'>No selected device!</p>
+          )}
+        </div>
       </div>
     </div>
   )

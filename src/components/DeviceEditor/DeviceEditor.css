@@ -1,36 +1,9 @@
-.DeviceEditor {
-  display: flex;
-}
-
 .device-selector {
-  overflow-y: scroll;
-  height: 100vh;
-  position: fixed;
-  left: 0;
-  top: 0;
-  padding-top: 5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
   width: 350px;
   background: black;
 }
-.device-selector form {
-  position: sticky;
-  top: 0;
-  padding-top: 2rem;
-  background: black;
-}
 
-.device-editor {
-  width: 100%;
-  height: 100vh;
-  padding-top: 1rem;
-  padding-left: 24rem;
-  padding-right: 1rem;
-  padding-bottom: 1rem;
-  overflow: hidden;
-}
-
-.PathCard {
-  margin: 0.5rem 0;
+.device-editor-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }/*# sourceMappingURL=DeviceEditor.css.map */
