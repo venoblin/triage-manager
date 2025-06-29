@@ -1,8 +1,9 @@
-.PathCard {
-  display: flex;
-}
 .PathCard.edit-mode {
   padding: 2rem 1rem;
+}
+
+.path-wrap {
+  display: flex;
 }
 
 .hops-wrap {
@@ -14,22 +15,25 @@
 .hops-wrap.selected {
   border-color: red;
 }
-.hops-wrap form {
-  display: flex;
-  flex-direction: column;
-}
-.hops-wrap input {
-  width: 150px;
-  height: 75px;
-}
-.hops-wrap button {
-  width: -moz-fit-content;
-  width: fit-content;
-}
 
 .hop {
   margin-right: 1rem;
 }
 .hop:last-of-type {
   margin-right: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 150px;
+  height: 75px;
+}
+
+button {
+  width: -moz-fit-content;
+  width: fit-content;
 }/*# sourceMappingURL=PathCard.css.map */

@@ -33,40 +33,44 @@ const PathCard = (props) => {
 
   return (
     <div className={`PathCard ${isEditMode && 'edit-mode'}`}>
-      <div>
-        <p className='position'>{props.position + 1}</p>
-        {isEditMode && !isSelected && (
-          <button onClick={selectPath}>Edit</button>
-        )}
-      </div>
-      
-      <div className={`hops-wrap ${isSelected && 'selected'}`}>
-        {isSelected && (
-          <form onSubmit={handleSubmit}>
-            <input
-              type='text'
-              name='hopName'
-              id='hopName'
-              value={formState.hopName}
-              onChange={(evt) => handleChange(evt)}
-              required
-            />
-            <button>Add</button>
-          </form>
-        )}
+
+      <div className='path-wrap'>
+        <div>
+          <p className='position'>{props.position + 1}</p>
+          {isEditMode && !isSelected && (
+            <button onClick={selectPath}>Edit</button>
+          )}
+        </div>
         
-        {props.path.hops.length > 0 ? (
-          (props.path.hops.map((hop, idx) => (
-            <p key={idx} className='hop'>
-              {`${hop.hopName}${idx !== props.path.hops.length - 1 ? ' ->' : ''}`}
-            </p>
-          )))
-        ) : (
-          (!isSelected && (
-            <p>There are no hops!</p>
-          ))
-        )}
+        <div className={`hops-wrap ${isSelected && 'selected'}`}>
+          
+          {props.path.hops.length > 0 ? (
+            (props.path.hops.map((hop, idx) => (
+              <p key={idx} className='hop'>
+                {`${hop.hopName}${idx !== props.path.hops.length - 1 ? ' ->' : ''}`}
+              </p>
+            )))
+          ) : (
+            (!isSelected && (
+              <p>There are no hops!</p>
+            ))
+          )}
+        </div>
       </div>
+
+      {isSelected && (
+        <form onSubmit={handleSubmit}>
+          <input
+            type='text'
+            name='hopName'
+            id='hopName'
+            value={formState.hopName}
+            onChange={(evt) => handleChange(evt)}
+            required
+          />
+          <button>Add</button>
+        </form>
+      )}
     </div>
   )
 }
