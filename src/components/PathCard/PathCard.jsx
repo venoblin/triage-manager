@@ -56,7 +56,7 @@ const PathCard = (props) => {
 
       <div className='path-wrap'>
         <div>
-          <p className='position'>{props.position + 1}</p>
+          <p className='position'>{props.path.port}</p>
           {isEditMode && !isSelected && (
             <button onClick={selectPath}>Edit</button>
           )}

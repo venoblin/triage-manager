@@ -21,7 +21,7 @@ const DeviceEditor = (props) => {
   const handleDeviceSubmit = (evt) => {
     evt.preventDefault()
 
-    appContext.postDevice(props.triage, formState)
+    appContext.postDevice(props.triage, deviceFormState)
 
     setDeviceFormState(deviceFormInitial)
   }
@@ -29,9 +29,7 @@ const DeviceEditor = (props) => {
   const handlePortSubmit = (evt) => {
     evt.preventDefault()
 
-    console.log(portFormState)
-    // appContext.postPath(props.triage, selectedDevice)
-
+    appContext.postPath(props.triage, selectedDevice, portFormState)
 
     setPortFormState(portFormInitial)
   }

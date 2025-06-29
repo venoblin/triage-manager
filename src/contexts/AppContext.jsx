@@ -61,7 +61,7 @@ export const AppProvider = (props) => {
     refreshTriages(updatedTriages)
   }
 
-  const postPath = (triage, device) => {
+  const postPath = (triage, device, payload) => {
     const createdPath = {...pathTemplate}
     const updatedTriages = [...triages]
 
@@ -72,7 +72,8 @@ export const AppProvider = (props) => {
           
           if (d.id === device.id) {
             d.paths.push({
-              ...createdPath, 
+              ...createdPath,
+              ...payload, 
               position: d.paths.length,
             })
             
