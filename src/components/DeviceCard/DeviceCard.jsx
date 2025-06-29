@@ -17,7 +17,7 @@ const DeviceCard = (props) => {
 
   return (
     <div className={`DeviceCard ${isSelected ? 'selected' : ''}`}>
-      {props.device.paths.length > 0 && (
+      {props.device.paths.length > 0 && !isSelected && (
         <button onClick={toggleExpanded}>Expand</button>
       )}
       

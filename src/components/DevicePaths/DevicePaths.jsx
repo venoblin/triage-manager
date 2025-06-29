@@ -12,6 +12,7 @@ const DevicePaths = (props) => {
           key={path.id} 
           position={idx} 
           triage={props.triage} 
+          device={props.device}
           path={path}
           selectedPath={selectedPath}
           setSelectedPath={setSelectedPath}

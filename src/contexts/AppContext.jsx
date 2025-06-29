@@ -35,6 +35,32 @@ export const AppProvider = (props) => {
     refreshTriages(updatedTriages)
   }
 
+  const postHop = (triageId, deviceId, pathId, payload) => {
+    const updatedTriages = [...triages]
+
+    for (let triage of updatedTriages) {
+      if (triage.id === triageId) {
+        for (let device of triage.devices) {
+          if (device.id === deviceId) {
+            for (let path of device.paths) {
+              if (path.id === pathId) {
+                path.hops.push({...payload, id: uuid()})
+
+                break
+              }
+            }
+            
+            break
+          }
+        }
+        
+        break
+      }
+    }
+
+    refreshTriages(updatedTriages)
+  }
+
   const generatePath = (triageId, deviceId) => {
     const updatedTriages = [...triages]
 
@@ -79,7 +105,8 @@ export const AppProvider = (props) => {
       postTriage,
       getTriage,
       postDevice,
-      generatePath
+      generatePath,
+      postHop
     }}>
       {props.children}
     </AppContext.Provider>
