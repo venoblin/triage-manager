@@ -7,45 +7,52 @@ import './DeviceEditor.css'
 const DeviceEditor = (props) => {
   const appContext = useContext(AppContext)
   
-  const initialFormState = {
+  const deviceFormInitial = {
     hostName: ''
   }
-  const [formState, setFormState] = useState(initialFormState)
+  const portFormInitial = {
+    port: ''
+  }
+  const [deviceFormState, setDeviceFormState] = useState(deviceFormInitial)
+  const [portFormState, setPortFormState] = useState(portFormInitial)
   const [selectedDevice, setSelectedDevice] = useState(null)
   const [selectedPath, setSelectedPath] = useState(null)
 
-  const handleSubmit = (evt) => {
+  const handleDeviceSubmit = (evt) => {
     evt.preventDefault()
 
     appContext.postDevice(props.triage, formState)
 
-    setFormState(initialFormState)
+    setDeviceFormState(deviceFormInitial)
   }
 
-  const handleChange = (evt) => {
+  const handlePortSubmit = (evt) => {
+    evt.preventDefault()
+
+    console.log(portFormState)
+    // appContext.postPath(props.triage, selectedDevice)
+
+
+    setPortFormState(portFormInitial)
+  }
+
+  const handleChange = (evt, formState, setFormState) => {
     const target = evt.target
     const newFormState = {...formState, [target.name]: target.value}
     setFormState(newFormState)
-  }
-    
-
-  const handleCreatePath = () => {
-    if (selectedDevice) {
-      appContext.postPath(props.triage, selectedDevice)
-    }
   }
   
   return (
     <div className='DeviceEditor'>
       <div className='triage-head'>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleDeviceSubmit}>
           <label htmlFor='hostName'>Hostname</label>
           <input 
             type='text'
             name='hostName'
             id='hostName'
-            value={formState.hostName}
-            onChange={(evt) => handleChange(evt)}
+            value={deviceFormState.hostName}
+            onChange={(evt) => handleChange(evt, deviceFormState, setDeviceFormState)}
             required
           />
           <button>Add Device</button>
@@ -75,8 +82,19 @@ const DeviceEditor = (props) => {
             <div className='editor'>
               <h2>{selectedDevice.hostName}</h2>
               
-              <button onClick={handleCreatePath}>Create Path</button>
-              
+              <form onSubmit={handlePortSubmit}>
+                <label htmlFor='port'>Port</label>
+                <input 
+                  type='text'
+                  name='port'
+                  id='port'
+                  value={portFormState.port}
+                  onChange={(evt) => handleChange(evt, portFormState, setPortFormState)}
+                  required
+                />
+                <button>Create Path</button>
+              </form>
+
               <DevicePaths 
                 device={selectedDevice} 
                 triage={props.triage}
