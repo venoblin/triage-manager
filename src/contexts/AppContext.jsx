@@ -62,6 +62,7 @@ export const AppProvider = (props) => {
   }
 
   const postPath = (triage, device) => {
+    const createdPath = {...pathTemplate}
     const updatedTriages = [...triages]
 
     for (let i = 0; i < updatedTriages.length; i++) {
@@ -71,7 +72,7 @@ export const AppProvider = (props) => {
           
           if (d.id === device.id) {
             d.paths.push({
-              ...pathTemplate, 
+              ...createdPath, 
               position: d.paths.length,
             })
             
@@ -95,7 +96,10 @@ export const AppProvider = (props) => {
           if (d.id === device.id) {
             for (let p of d.paths) {
               if (p.id === path.id) {
-                p.hops.push(createdHop)
+                p.hops.push({
+                  ...createdHop,
+                  position: p.hops.length
+                })
 
                 break
               }
