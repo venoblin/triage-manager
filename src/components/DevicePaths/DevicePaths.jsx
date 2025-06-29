@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import PathCard from '../PathCard/PathCard'
 import './DevicePaths.css'
 

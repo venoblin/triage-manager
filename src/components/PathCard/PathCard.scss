@@ -6,10 +6,11 @@
   }
 }
 
-.hops {
+.hops-wrap {
   width: 100%;
   border: 1px solid gray;
   transition: border 0.2s ease-in-out;
+  display: flex;
 
   &.selected {
     border-color: red;
@@ -27,5 +28,13 @@
 
   button {
     width: fit-content;
+  }
+}
+
+.hop {
+  margin-right: 1rem;
+
+  &:last-of-type {
+    margin-right: 0;
   }
 }

@@ -40,7 +40,7 @@ const PathCard = (props) => {
         )}
       </div>
       
-      <div className={`hops ${isSelected && 'selected'}`}>
+      <div className={`hops-wrap ${isSelected && 'selected'}`}>
         {isSelected && (
           <form onSubmit={handleSubmit}>
             <input
@@ -57,7 +57,9 @@ const PathCard = (props) => {
         
         {props.path.hops.length > 0 ? (
           (props.path.hops.map((hop, idx) => (
-            <p key={idx}>{hop.hopName}</p>
+            <p key={idx} className='hop'>
+              {`${hop.hopName}${idx !== props.path.hops.length - 1 ? ' ->' : ''}`}
+            </p>
           )))
         ) : (
           (!isSelected && (

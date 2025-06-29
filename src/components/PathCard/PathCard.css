@@ -5,23 +5,31 @@
   padding: 2rem 1rem;
 }
 
-.hops {
+.hops-wrap {
   width: 100%;
   border: 1px solid gray;
   transition: border 0.2s ease-in-out;
+  display: flex;
 }
-.hops.selected {
+.hops-wrap.selected {
   border-color: red;
 }
-.hops form {
+.hops-wrap form {
   display: flex;
   flex-direction: column;
 }
-.hops input {
+.hops-wrap input {
   width: 150px;
   height: 75px;
 }
-.hops button {
+.hops-wrap button {
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.hop {
+  margin-right: 1rem;
+}
+.hop:last-of-type {
+  margin-right: 0;
 }/*# sourceMappingURL=PathCard.css.map */
