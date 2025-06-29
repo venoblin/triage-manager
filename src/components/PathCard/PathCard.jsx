@@ -8,21 +8,36 @@ const PathCard = (props) => {
   const isSelected = props.selectedPath && props.selectedPath.id === props.path.id
   const isEditMode = props.isEditMode === true
 
-  const initialFormState = {
-    hopName: ''
+  const hopFormInitial = {
+    hopName: '',
   }
-  const [formState, setFormState] = useState(initialFormState)
+  const destFormInitial = {
+    destHostName: '',
+    port: ''
+  }
+  const [hopFormState, setHopFormState] = useState(hopFormInitial)
+  const [destFormState, setDestFormState] = useState(destFormInitial)
   const [formType, setFormType] = useState('hop')
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    appContext.postHop(props.triage, props.device, props.selectedPath, formState)
-
-    setFormState(initialFormState)
+    if (formType === 'hop') {
+      appContext.postHop(
+        props.triage, 
+        props.device, 
+        props.selectedPath, 
+        {hopName: hopFormState.hopName}
+      )
+    } else if (formType === 'destination') {
+      console.log(destFormState)
+    }
+    
+    setHopFormState(hopFormInitial)
+    setDestFormState(destFormInitial)
   }
 
-  const handleChange = (evt) => {
+  const handleChange = (evt, formState, setFormState) => {
     const target = evt.target
     const newFormState = {...formState, [target.name]: target.value}
     setFormState(newFormState)
@@ -83,18 +98,41 @@ const PathCard = (props) => {
 
             <form onSubmit={handleSubmit}>
               {formType === 'hop' && 
-                <input
-                  type='text'
-                  name='hopName'
-                  id='hopName'
-                  value={formState.hopName}
-                  onChange={(evt) => handleChange(evt)}
-                  required
-                />
+                <div>
+                  <label htmlFor='hopName'>Hop</label>
+                  <input
+                    type='text'
+                    name='hopName'
+                    id='hopName'
+                    value={hopFormState.hopName}
+                    onChange={(evt) => handleChange(evt, hopFormState, setHopFormState)}
+                    required
+                  />
+                </div>
               }
 
               {formType === 'destination' && 
-                <p>Destination</p>
+                <div>
+                  <label htmlFor='destHostName'>Destination</label>
+                  <input
+                    type='text'
+                    name='destHostName'
+                    id='destHostName'
+                    value={destFormState.destHostName}
+                    onChange={(evt) => handleChange(evt, destFormState, setDestFormState)}
+                    required
+                  />
+
+                  <label htmlFor='port'>Port</label>
+                  <input
+                    type='text'
+                    name='port'
+                    id='port'
+                    value={destFormState.port}
+                    onChange={(evt) => handleChange(evt, destFormState, setDestFormState)}
+                    required
+                  />
+                </div>
               }
               <button>Add</button>
             </form>
