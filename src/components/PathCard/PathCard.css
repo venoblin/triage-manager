@@ -1,5 +1,16 @@
+.PathCard form input,
+.PathCard form button {
+  display: block;
+}
 .PathCard.edit-mode {
   padding: 2rem 1rem;
+}
+
+.form-switcher button {
+  transition: border 0.2s ease-in-out;
+}
+.form-switcher button.active {
+  border-color: red;
 }
 
 .path-wrap {

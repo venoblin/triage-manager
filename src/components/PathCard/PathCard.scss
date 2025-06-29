@@ -1,7 +1,23 @@
 .PathCard {
 
+  form input,
+  form button {
+    display: block;
+  }
+
   &.edit-mode {
     padding: 2rem 1rem;
+  }
+}
+
+.form-switcher {
+
+  button {
+    transition: border 0.2s ease-in-out;
+
+    &.active {
+      border-color: red;
+    }
   }
 }
 

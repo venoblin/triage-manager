@@ -29,7 +29,7 @@ const DeviceCard = (props) => {
       )}
 
       {props.device.paths.length ? (
-        isExpanded ? (
+        isExpanded && !isSelected ? (
           <DevicePaths device={props.device} />
         ) : (
           <p className='count'>{`${props.device.paths.length} paths`}</p>

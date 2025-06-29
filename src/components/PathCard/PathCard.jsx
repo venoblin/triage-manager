@@ -12,6 +12,7 @@ const PathCard = (props) => {
     hopName: ''
   }
   const [formState, setFormState] = useState(initialFormState)
+  const [formType, setFormType] = useState('hop')
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
@@ -25,6 +26,10 @@ const PathCard = (props) => {
     const target = evt.target
     const newFormState = {...formState, [target.name]: target.value}
     setFormState(newFormState)
+  }
+
+  const handleFormSwitch = (formType) => {
+    setFormType(formType)
   }
 
   const selectPath = () => {
@@ -59,17 +64,42 @@ const PathCard = (props) => {
       </div>
 
       {isSelected && isEditMode && (
-        <form onSubmit={handleSubmit}>
-          <input
-            type='text'
-            name='hopName'
-            id='hopName'
-            value={formState.hopName}
-            onChange={(evt) => handleChange(evt)}
-            required
-          />
-          <button>Add</button>
-        </form>
+        <div>
+          <div className='form-switcher'>
+            <button 
+              onClick={() => handleFormSwitch('hop')} 
+              className={`hop-btn${formType === 'hop' ? ' active' : ''}`}
+            >
+                Hop
+            </button>
+
+            <button 
+              onClick={() => handleFormSwitch('destination')} 
+              className={`destination-btn${formType === 'destination' ? ' active' : ''}`}
+            >
+              Destination
+            </button>
+          </div>
+
+            <form onSubmit={handleSubmit}>
+              {formType === 'hop' && 
+                <input
+                  type='text'
+                  name='hopName'
+                  id='hopName'
+                  value={formState.hopName}
+                  onChange={(evt) => handleChange(evt)}
+                  required
+                />
+              }
+
+              {formType === 'destination' && 
+                <p>Destination</p>
+              }
+              <button>Add</button>
+            </form>
+          
+        </div>
       )}
     </div>
   )
