@@ -58,7 +58,7 @@ const PathCard = (props) => {
         </div>
       </div>
 
-      {isSelected && (
+      {isSelected && isEditMode && (
         <form onSubmit={handleSubmit}>
           <input
             type='text'
