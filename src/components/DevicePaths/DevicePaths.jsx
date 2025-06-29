@@ -3,7 +3,6 @@ import PathCard from '../PathCard/PathCard'
 import './DevicePaths.css'
 
 const DevicePaths = (props) => {
-  const [selectedPath, setSelectedPath] = useState(null)
   
   return (
     <div className='DevicePaths'>
@@ -14,8 +13,8 @@ const DevicePaths = (props) => {
           triage={props.triage} 
           device={props.device}
           path={path}
-          selectedPath={selectedPath}
-          setSelectedPath={setSelectedPath}
+          selectedPath={props.selectedPath}
+          setSelectedPath={props.setSelectedPath}
           isEditMode={props.isEditMode}
         />
       ))}

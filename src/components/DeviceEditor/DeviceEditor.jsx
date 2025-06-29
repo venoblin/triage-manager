@@ -1,19 +1,18 @@
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../contexts/AppContext'
-import { LayoutContext } from '../../contexts/LayoutContext'
 import DeviceCard from '../DeviceCard/DeviceCard'
 import DevicePaths from '../DevicePaths/DevicePaths'
 import './DeviceEditor.css'
 
 const DeviceEditor = (props) => {
   const appContext = useContext(AppContext)
-  const layoutContext = useContext(LayoutContext)
   
   const initialFormState = {
     hostName: ''
   }
   const [formState, setFormState] = useState(initialFormState)
   const [selectedDevice, setSelectedDevice] = useState(null)
+  const [selectedPath, setSelectedPath] = useState(null)
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
@@ -63,6 +62,7 @@ const DeviceEditor = (props) => {
                 key={device.id}
                 selectedDevice={selectedDevice}
                 setSelectedDevice={setSelectedDevice}
+                setSelectedPath={setSelectedPath}
               />
             ))
           ) : (
@@ -80,7 +80,9 @@ const DeviceEditor = (props) => {
               <DevicePaths 
                 device={selectedDevice} 
                 triage={props.triage}
-                isEditMode={true} 
+                isEditMode={true}
+                selectedPath={selectedPath}
+                setSelectedPath={setSelectedPath} 
               />
             </div>
           ) : (

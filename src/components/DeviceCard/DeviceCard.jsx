@@ -8,6 +8,7 @@ const DeviceCard = (props) => {
 
   const selectDevice = () => {
     props.setSelectedDevice(props.device)
+    props.setSelectedPath(null)
     window.scrollTo(0, 0)
   }
 
