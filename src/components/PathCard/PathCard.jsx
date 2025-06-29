@@ -1,8 +1,28 @@
+import { useState } from 'react'
 import './PathCard.css'
 
 const PathCard = (props) => {
   const isSelected = props.selectedPath && props.selectedPath.id === props.path.id
   const isEditMode = props.isEditMode === true
+
+  const initialFormState = {
+    hop: ''
+  }
+  const [formState, setFormState] = useState(initialFormState)
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+
+    console.log(formState)
+
+    setFormState(initialFormState)
+  }
+
+  const handleChange = (evt) => {
+    const target = evt.target
+    const newFormState = {...formState, [target.name]: target.value}
+    setFormState(newFormState)
+  }
 
   const selectPath = () => {
     props.setSelectedPath(props.path)
@@ -19,11 +39,13 @@ const PathCard = (props) => {
       
       <div className={`hops ${isSelected && 'selected'}`}>
         {isSelected && (
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               type='text'
               name='hop'
               id='hop'
+              value={formState.hop}
+              onChange={(evt) => handleChange(evt)}
               required
             />
             <button>Add</button>

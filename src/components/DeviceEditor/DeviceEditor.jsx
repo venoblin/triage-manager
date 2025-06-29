@@ -10,8 +10,8 @@ const DeviceEditor = (props) => {
   const layoutContext = useContext(LayoutContext)
   
   const initialFormState = {
-      hostName: ''
-    }
+    hostName: ''
+  }
   const [formState, setFormState] = useState(initialFormState)
   const [selectedDevice, setSelectedDevice] = useState(null)
 
