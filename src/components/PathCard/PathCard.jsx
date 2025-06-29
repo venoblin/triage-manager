@@ -17,7 +17,7 @@ const PathCard = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    appContext.postHop(props.triage.id, props.device.id, props.selectedPath.id, formState)
+    appContext.postHop(props.triage, props.device, props.selectedPath, formState)
 
     setFormState(initialFormState)
   }

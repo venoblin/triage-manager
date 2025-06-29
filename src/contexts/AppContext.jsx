@@ -30,7 +30,11 @@ export const AppProvider = (props) => {
   }
 
   const postTriage = (payload) => {
-    const createdTriage = {...payload, ...triageTemplate}
+    const createdTriage = {
+      ...payload, 
+      ...triageTemplate,
+      position: triages.length
+    }
     const updatedTriages = [...triages, createdTriage]
     
     refreshTriages(updatedTriages)
@@ -38,13 +42,17 @@ export const AppProvider = (props) => {
     return createdTriage
   }
 
-  const postDevice = (triageId, payload) => {
-    const createdDevice = {...payload, ...deviceTemplate}
+  const postDevice = (triage, payload) => {
+    const createdDevice = {
+      ...payload, 
+      ...deviceTemplate,
+      position: triage.devices.length
+    }
     const updatedTriages = [...triages]
 
     for (let i = 0; i < updatedTriages.length; i++) {
 
-      if (updatedTriages[i].id === triageId) {
+      if (updatedTriages[i].id === triage.id) {
         updatedTriages[i].devices.push(createdDevice)
         break
       }
@@ -53,18 +61,18 @@ export const AppProvider = (props) => {
     refreshTriages(updatedTriages)
   }
 
-  const postPath = (triageId, deviceId) => {
+  const postPath = (triage, device) => {
     const updatedTriages = [...triages]
 
     for (let i = 0; i < updatedTriages.length; i++) {
-      if (updatedTriages[i].id === triageId) {
+      if (updatedTriages[i].id === triage.id) {
         for (let j = 0; j < updatedTriages[i].devices.length; j++) {
-          const device = updatedTriages[i].devices[j]
+          const d = updatedTriages[i].devices[j]
           
-          if (device.id === deviceId) {
-            device.paths.push({
+          if (d.id === device.id) {
+            d.paths.push({
               ...pathTemplate, 
-              position: device.paths.length,
+              position: d.paths.length,
             })
             
             break
@@ -77,17 +85,17 @@ export const AppProvider = (props) => {
     refreshTriages(updatedTriages)
   }
 
-  const postHop = (triageId, deviceId, pathId, payload) => {
+  const postHop = (triage, device, path, payload) => {
     const createdHop = {...payload, ...hopTemplate}
     const updatedTriages = [...triages]
 
-    for (let triage of updatedTriages) {
-      if (triage.id === triageId) {
-        for (let device of triage.devices) {
-          if (device.id === deviceId) {
-            for (let path of device.paths) {
-              if (path.id === pathId) {
-                path.hops.push(createdHop)
+    for (let t of updatedTriages) {
+      if (t.id === triage.id) {
+        for (let d of t.devices) {
+          if (d.id === device.id) {
+            for (let p of d.paths) {
+              if (p.id === path.id) {
+                p.hops.push(createdHop)
 
                 break
               }

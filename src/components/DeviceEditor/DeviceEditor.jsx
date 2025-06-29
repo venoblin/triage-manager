@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { AppContext } from '../../contexts/AppContext'
 import DeviceCard from '../DeviceCard/DeviceCard'
 import DevicePaths from '../DevicePaths/DevicePaths'
@@ -17,7 +17,7 @@ const DeviceEditor = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    appContext.postDevice(props.triage.id, formState)
+    appContext.postDevice(props.triage, formState)
 
     setFormState(initialFormState)
   }
@@ -31,7 +31,7 @@ const DeviceEditor = (props) => {
 
   const handleCreatePath = () => {
     if (selectedDevice) {
-      appContext.generatePath(props.triage.id, selectedDevice.id)
+      appContext.postPath(props.triage, selectedDevice)
     }
   }
   
