@@ -7,13 +7,30 @@ export const AppContext = createContext()
 export const AppProvider = (props) => {
   const [triages, setTriages] = useState([])
 
+  const triageTemplate = {
+    id: uuid(), 
+    devices: []
+  }
+  const deviceTemplate = {
+    id: uuid(), 
+    paths: []
+  }
+  const pathTemplate = {
+    id: uuid(), 
+    hops: [],
+    destination: null
+  }
+  const hopTemplate = {
+    id: uuid()
+  }
+
   const refreshTriages = (updatedTriages) => {
     setTriages(updatedTriages)
     setStorageItem('triages', updatedTriages)
   }
 
   const postTriage = (payload) => {
-    const createdTriage = {...payload, id: uuid(), devices: []}
+    const createdTriage = {...payload, ...triageTemplate}
     const updatedTriages = [...triages, createdTriage]
     
     refreshTriages(updatedTriages)
@@ -22,12 +39,13 @@ export const AppProvider = (props) => {
   }
 
   const postDevice = (triageId, payload) => {
+    const createdDevice = {...payload, ...deviceTemplate}
     const updatedTriages = [...triages]
 
     for (let i = 0; i < updatedTriages.length; i++) {
 
       if (updatedTriages[i].id === triageId) {
-        updatedTriages[i].devices.push({...payload, id: uuid(), paths: [], destination: null})
+        updatedTriages[i].devices.push(createdDevice)
         break
       }
     }
@@ -35,33 +53,7 @@ export const AppProvider = (props) => {
     refreshTriages(updatedTriages)
   }
 
-  const postHop = (triageId, deviceId, pathId, payload) => {
-    const updatedTriages = [...triages]
-
-    for (let triage of updatedTriages) {
-      if (triage.id === triageId) {
-        for (let device of triage.devices) {
-          if (device.id === deviceId) {
-            for (let path of device.paths) {
-              if (path.id === pathId) {
-                path.hops.push({...payload, id: uuid()})
-
-                break
-              }
-            }
-            
-            break
-          }
-        }
-        
-        break
-      }
-    }
-
-    refreshTriages(updatedTriages)
-  }
-
-  const generatePath = (triageId, deviceId) => {
+  const postPath = (triageId, deviceId) => {
     const updatedTriages = [...triages]
 
     for (let i = 0; i < updatedTriages.length; i++) {
@@ -71,11 +63,35 @@ export const AppProvider = (props) => {
           
           if (device.id === deviceId) {
             device.paths.push({
-              id: uuid(), 
+              ...pathTemplate, 
               position: device.paths.length,
-              hops: []
             })
             
+            break
+          }
+        }
+        break
+      }
+    }
+
+    refreshTriages(updatedTriages)
+  }
+
+  const postHop = (triageId, deviceId, pathId, payload) => {
+    const createdHop = {...payload, ...hopTemplate}
+    const updatedTriages = [...triages]
+
+    for (let triage of updatedTriages) {
+      if (triage.id === triageId) {
+        for (let device of triage.devices) {
+          if (device.id === deviceId) {
+            for (let path of device.paths) {
+              if (path.id === pathId) {
+                path.hops.push(createdHop)
+
+                break
+              }
+            }
             break
           }
         }
@@ -105,7 +121,7 @@ export const AppProvider = (props) => {
       postTriage,
       getTriage,
       postDevice,
-      generatePath,
+      postPath,
       postHop
     }}>
       {props.children}
