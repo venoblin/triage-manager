@@ -115,6 +115,11 @@ export const AppProvider = (props) => {
     refreshTriages(updatedTriages)
   }
 
+  const postDestination = (triage, device, path, payload) => {
+    const updatedTriages = [...triages]
+    updatedTriages[triage.position].devices[device.position].paths[path.position]
+  }
+
   const getTriage = (id) => {
     const foundTriage = triages.find(t => t.id === id)
     
