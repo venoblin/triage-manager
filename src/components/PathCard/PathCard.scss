@@ -1,4 +1,6 @@
 .PathCard {
+  border: 1px solid gray;
+  transition: border 0.2s ease-in-out;
 
   form input,
   form button {
@@ -7,6 +9,10 @@
 
   &.edit-mode {
     padding: 2rem 1rem;
+  }
+
+  &.selected {
+    border-color: red;
   }
 }
 
@@ -27,13 +33,7 @@
 
 .hops-wrap {
   width: 100%;
-  border: 1px solid gray;
-  transition: border 0.2s ease-in-out;
   display: flex;
-
-  &.selected {
-    border-color: red;
-  }
 }
 
 .hop {

@@ -7,6 +7,7 @@ const PathCard = (props) => {
   
   const isSelected = props.selectedPath && props.selectedPath.id === props.path.id
   const isEditMode = props.isEditMode === true
+  const classes = `PathCard ${isEditMode ? 'edit-mode' : ''} ${isSelected ? 'selected' : ''}`
 
   const hopFormInitial = {
     hopName: '',
@@ -57,7 +58,7 @@ const PathCard = (props) => {
   }
 
   return (
-    <div className={`PathCard ${isEditMode && 'edit-mode'}`}>
+    <div className={classes}>
 
       <div className='path-wrap'>
         <div>
@@ -67,7 +68,7 @@ const PathCard = (props) => {
           )}
         </div>
         
-        <div className={`hops-wrap ${isSelected && 'selected'}`}>
+        <div className={`hops-wrap`}>
           
           {props.path.hops.length > 0 ? (
             (props.path.hops.map((hop, idx) => (
@@ -82,12 +83,10 @@ const PathCard = (props) => {
               </div>
             )))
           ) : (
-            (!isSelected && (
-              <p>There are no hops!</p>
-            ))
+            <p>There are no hops!</p>
           )}
         </div>
-        
+
         <div className='destination-wrap'>
           {props.path.destination !== null ? (
             <div className='destination'>

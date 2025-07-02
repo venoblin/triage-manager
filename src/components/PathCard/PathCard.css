@@ -1,9 +1,16 @@
+.PathCard {
+  border: 1px solid gray;
+  transition: border 0.2s ease-in-out;
+}
 .PathCard form input,
 .PathCard form button {
   display: block;
 }
 .PathCard.edit-mode {
   padding: 2rem 1rem;
+}
+.PathCard.selected {
+  border-color: red;
 }
 
 .form-switcher button {
@@ -19,12 +26,7 @@
 
 .hops-wrap {
   width: 100%;
-  border: 1px solid gray;
-  transition: border 0.2s ease-in-out;
   display: flex;
-}
-.hops-wrap.selected {
-  border-color: red;
 }
 
 .hop {
