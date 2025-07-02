@@ -73,10 +73,12 @@ const PathCard = (props) => {
           {props.path.hops.length > 0 ? (
             (props.path.hops.map((hop, idx) => (
               <div key={hop.id} className='hop'>
-                <div className='hop-inputs'>
-                  <button>Edit</button>
-                  <button>Delete</button>
-                </div>
+                {isEditMode && isSelected &&
+                  <div className='hop-inputs'>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                  </div>
+                }
                 <p>
                   {`${hop.hopName}${idx !== props.path.hops.length - 1 ? ' ->' : ''}`}
                 </p>
