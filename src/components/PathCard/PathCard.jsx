@@ -87,6 +87,17 @@ const PathCard = (props) => {
             ))
           )}
         </div>
+        
+        <div className='destination-wrap'>
+          {props.path.destination !== null ? (
+            <div className='destination'>
+              <p>{props.path.destination.destHostName}</p>
+              <p>{props.path.destination.port}</p>
+            </div>
+          ) : (
+            <p>There is no destination!</p>
+          )}
+        </div>
       </div>
 
       {isSelected && isEditMode && (
