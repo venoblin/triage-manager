@@ -33,7 +33,7 @@ export const AppProvider = (props) => {
     const createdTriage = {
       ...payload, 
       ...triageTemplate,
-      position: triages.length
+      pos: triages.length
     }
     const updatedTriages = [...triages, createdTriage]
     
@@ -46,7 +46,7 @@ export const AppProvider = (props) => {
     const createdDevice = {
       ...payload, 
       ...deviceTemplate,
-      position: triage.devices.length
+      pos: triage.devices.length
     }
     const updatedTriages = [...triages]
 
@@ -74,7 +74,7 @@ export const AppProvider = (props) => {
             d.paths.push({
               ...createdPath,
               ...payload, 
-              position: d.paths.length,
+              pos: d.paths.length,
             })
             
             break
@@ -99,7 +99,7 @@ export const AppProvider = (props) => {
               if (p.id === path.id) {
                 p.hops.push({
                   ...createdHop,
-                  position: p.hops.length
+                  pos: p.hops.length
                 })
 
                 break
@@ -117,7 +117,29 @@ export const AppProvider = (props) => {
 
   const postDestination = (triage, device, path, payload) => {
     const updatedTriages = [...triages]
-    updatedTriages[triage.position].devices[device.position].paths[path.position]
+    const found = updatedTriages[triage.pos].devices[device.pos].paths[path.pos]
+
+    if (found.id === path.id) {
+      found.destination = {...payload}
+    } else {
+      for (let t of updatedTriages) {
+        if (t.id === triage.id) {
+          for (let d of t.devices) {
+            if (d.id === device.id) {
+              for (let p of d.paths) {
+                if (p.id === path.id) {
+                  p.destination = {...payload}
+
+                  break
+                }
+              }
+              break
+            }
+          }
+          break
+        }
+      }
+    }
   }
 
   const getTriage = (id) => {
@@ -140,7 +162,8 @@ export const AppProvider = (props) => {
       getTriage,
       postDevice,
       postPath,
-      postHop
+      postHop,
+      postDestination
     }}>
       {props.children}
     </AppContext.Provider>

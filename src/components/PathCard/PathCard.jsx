@@ -27,10 +27,15 @@ const PathCard = (props) => {
         props.triage, 
         props.device, 
         props.selectedPath, 
-        {hopName: hopFormState.hopName}
+        hopFormState
       )
     } else if (formType === 'destination') {
-      console.log(destFormState)
+      appContext.postDestination(
+        props.triage, 
+        props.device, 
+        props.selectedPath, 
+        destFormState
+      )
     }
     
     setHopFormState(hopFormInitial)
