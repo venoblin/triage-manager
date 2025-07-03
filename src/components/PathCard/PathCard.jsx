@@ -67,9 +67,17 @@ const PathCard = (props) => {
 
       <div className='path-wrap'>
         <div>
+          {isEditMode && isSelected &&
+            <div className='port-inputs'>
+              <button>Edit</button>
+              <button>Delete</button>
+            </div>
+          }
+
           <p className='position'>{props.path.port}</p>
+
           {isEditMode && !isSelected && (
-            <button onClick={selectPath}>Edit</button>
+            <button onClick={selectPath}>Edit Path</button>
           )}
         </div>
         
@@ -97,6 +105,13 @@ const PathCard = (props) => {
         <div className='destination-wrap'>
           {props.path.destination !== null ? (
             <div className='destination'>
+              {isEditMode && isSelected &&
+                <div className='port-inputs'>
+                  <button>Edit</button>
+                  <button>Delete</button>
+                </div>
+              }
+              
               <p>{props.path.destination.destHostName}</p>
               <p>{props.path.destination.port}</p>
             </div>
