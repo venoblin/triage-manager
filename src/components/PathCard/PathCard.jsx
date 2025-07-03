@@ -53,6 +53,11 @@ const PathCard = (props) => {
     setFormType(formType)
   }
 
+  const cancelHandler = () => {
+    props.setSelectedPath(null)
+    setFormType('hop')
+  }
+
   const selectPath = () => {
     props.setSelectedPath(props.path)
   }
@@ -159,7 +164,8 @@ const PathCard = (props) => {
               }
               <button>Add</button>
             </form>
-          
+
+            <button onClick={cancelHandler}>Cancel</button>
         </div>
       )}
     </div>
