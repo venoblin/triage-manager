@@ -66,7 +66,9 @@ const PathCard = (props) => {
     <div className={classes}>
 
       <div className='path-wrap'>
-        <div>
+        <div className='port-wrap'>
+          <h3>Port</h3>
+          
           {isEditMode && isSelected &&
             <div className='port-inputs'>
               <button>Edit</button>
@@ -82,27 +84,32 @@ const PathCard = (props) => {
         </div>
         
         <div className={`hops-wrap`}>
+          <h3>Hops</h3>
           
-          {props.path.hops.length > 0 ? (
-            (props.path.hops.map((hop, idx) => (
-              <div key={hop.id} className='hop'>
-                {isEditMode && isSelected &&
-                  <div className='hop-inputs'>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                  </div>
-                }
-                <p>
-                  {`${hop.hopName}${idx !== props.path.hops.length - 1 ? ' ->' : ''}`}
-                </p>
-              </div>
-            )))
-          ) : (
-            <p>There are no hops!</p>
-          )}
+          <div className='hops'>
+            {props.path.hops.length > 0 ? (
+              (props.path.hops.map((hop, idx) => (
+                <div key={hop.id} className='hop'>
+                  {isEditMode && isSelected &&
+                    <div className='hop-inputs'>
+                      <button>Edit</button>
+                      <button>Delete</button>
+                    </div>
+                  }
+                  <p>
+                    {`${hop.hopName}${idx !== props.path.hops.length - 1 ? ' ->' : ''}`}
+                  </p>
+                </div>
+              )))
+            ) : (
+              <p>There are no hops!</p>
+            )}
+          </div>
         </div>
 
         <div className='destination-wrap'>
+          <h3>Destination</h3>
+          
           {props.path.destination !== null ? (
             <div className='destination'>
               {isEditMode && isSelected &&
