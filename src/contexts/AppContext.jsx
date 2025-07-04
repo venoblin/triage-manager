@@ -29,6 +29,31 @@ export const AppProvider = (props) => {
     setStorageItem('triages', updatedTriages)
   }
 
+  const findItem = (item) => {
+    const updatedTriages = [...triages]
+    
+    for (let t of updatedTriages) {
+      if (t.id === item.id) {
+        for (let d of t.devices) {
+          if (d.id === item.id) {
+            for (let p of d.paths) {
+              if (p.id === item.id) {
+                p.hops.push({
+                  ...createdHop,
+                  pos: p.hops.length
+                })
+
+                break
+              }
+            }
+            break
+          }
+        }
+        break
+      }
+    }
+  }
+
   const postTriage = (payload) => {
     const createdTriage = {
       ...payload, 
