@@ -64,7 +64,6 @@ const PathCard = (props) => {
 
   return (
     <div className={classes}>
-
       <div className='path-wrap'>
         <div className='port-wrap'>
           <h3>Port</h3>
