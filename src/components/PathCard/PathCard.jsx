@@ -37,7 +37,7 @@ const PathCard = (props) => {
         props.selectedPath, 
         destFormState
       )
-    }
+    } 
     
     setHopFormState(hopFormInitial)
     setDestFormState(destFormInitial)
