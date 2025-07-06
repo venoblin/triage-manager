@@ -70,15 +70,17 @@ const PathCard = (props) => {
           
           {isEditMode && isSelected &&
             <div className='port-inputs'>
-              <button>Edit</button>
-              <button>Delete</button>
+              <button>Edit Port</button>
             </div>
           }
 
           <p className='position'>{props.path.port}</p>
 
           {isEditMode && !isSelected && (
-            <button onClick={selectPath}>Edit Path</button>
+            <div className='path-inputs'>
+              <button onClick={selectPath}>Edit Path</button>
+              <button>Delete Path</button>
+            </div>
           )}
         </div>
         
