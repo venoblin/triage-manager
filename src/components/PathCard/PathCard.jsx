@@ -18,7 +18,7 @@ const PathCard = (props) => {
   }
   const [hopFormState, setHopFormState] = useState(hopFormInitial)
   const [destFormState, setDestFormState] = useState(destFormInitial)
-  const [formType, setFormType] = useState('hop')
+  const [formType, setFormType] = useState('')
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
@@ -69,9 +69,7 @@ const PathCard = (props) => {
           <h3>Port</h3>
           
           {isEditMode && isSelected &&
-            <div className='port-inputs'>
-              <button>Edit Port</button>
-            </div>
+            <button>Edit Port</button>
           }
 
           <p className='position'>{props.path.port}</p>
@@ -86,7 +84,9 @@ const PathCard = (props) => {
         
         <div className={`hops-wrap`}>
           <h3>Hops</h3>
-          <button>Add Hop</button>
+          {isEditMode && isSelected &&
+            <button>Add Hop</button>
+          }
           
           <div className='hops'>
             {props.path.hops.length > 0 ? (
@@ -111,7 +111,9 @@ const PathCard = (props) => {
 
         <div className='destination-wrap'>
           <h3>Destination</h3>
-          <button>{props.path.destination !== null ? 'Edit ' : 'Add '}Destination</button>
+          {isEditMode && isSelected &&
+            <button>{props.path.destination !== null ? 'Edit ' : 'Add '}Destination</button>
+          }
           
           {props.path.destination !== null ? (
             <div className='destination'>
