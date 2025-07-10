@@ -86,6 +86,7 @@ const PathCard = (props) => {
         
         <div className={`hops-wrap`}>
           <h3>Hops</h3>
+          <button>Edit Hops</button>
           
           <div className='hops'>
             {props.path.hops.length > 0 ? (
