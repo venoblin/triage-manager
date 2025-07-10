@@ -9,6 +9,9 @@ const PathCard = (props) => {
   const isEditMode = props.isEditMode === true
   const classes = `PathCard ${isEditMode ? 'edit-mode' : ''} ${isSelected ? 'selected' : ''}`
 
+  const portFormInitial = {
+    port: props.path.port
+  }
   const hopFormInitial = {
     hopName: '',
   }
@@ -16,6 +19,12 @@ const PathCard = (props) => {
     destHostName: '',
     port: ''
   }
+  const type = {
+    HOP: 'hop',
+    DEST: 'dest',
+    PORT: 'port'
+  }
+  const [portFormState, setPortFormState] = useState(portFormInitial)
   const [hopFormState, setHopFormState] = useState(hopFormInitial)
   const [destFormState, setDestFormState] = useState(destFormInitial)
   const [formType, setFormType] = useState('')
@@ -23,14 +32,14 @@ const PathCard = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    if (formType === 'hop') {
+    if (formType === type.HOP) {
       appContext.postHop(
         props.triage, 
         props.device, 
         props.selectedPath, 
         hopFormState
       )
-    } else if (formType === 'destination') {
+    } else if (formType === type.DEST) {
       appContext.postDestination(
         props.triage, 
         props.device, 
@@ -69,7 +78,7 @@ const PathCard = (props) => {
           <h3>Port</h3>
           
           {isEditMode && isSelected &&
-            <button>Edit Port</button>
+            <button onClick={() => handleFormSwitch(type.PORT)}>Edit Port</button>
           }
 
           <p className='position'>{props.path.port}</p>
@@ -85,7 +94,7 @@ const PathCard = (props) => {
         <div className={`hops-wrap`}>
           <h3>Hops</h3>
           {isEditMode && isSelected &&
-            <button>Add Hop</button>
+            <button onClick={() => handleFormSwitch(type.HOP)}>Add Hop</button>
           }
           
           <div className='hops'>
@@ -112,7 +121,9 @@ const PathCard = (props) => {
         <div className='destination-wrap'>
           <h3>Destination</h3>
           {isEditMode && isSelected &&
-            <button>{props.path.destination !== null ? 'Edit ' : 'Add '}Destination</button>
+            <button onClick={() => handleFormSwitch(type.DEST)}>
+              {props.path.destination !== null ? 'Edit ' : 'Add '}Destination
+            </button>
           }
           
           {props.path.destination !== null ? (
@@ -137,7 +148,21 @@ const PathCard = (props) => {
         <div>
           {formType !== '' && (
             <form onSubmit={handleSubmit}>
-              {formType === 'hop' && 
+              {formType === type.PORT && 
+                <div>
+                  <label htmlFor='port'>Port</label>
+                  <input
+                    type='text'
+                    name='port'
+                    id='port'
+                    value={portFormState.port}
+                    onChange={(evt) => handleChange(evt, portFormState, setPortFormState)}
+                    required
+                  />
+                </div>
+              }
+              
+              {formType === type.HOP && 
                 <div>
                   <label htmlFor='hopName'>Hop</label>
                   <input
@@ -151,7 +176,7 @@ const PathCard = (props) => {
                 </div>
               }
 
-              {formType === 'destination' && 
+              {formType === type.DEST && 
                 <div>
                   <label htmlFor='destHostName'>Destination</label>
                   <input
