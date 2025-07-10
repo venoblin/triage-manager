@@ -111,6 +111,7 @@ const PathCard = (props) => {
 
         <div className='destination-wrap'>
           <h3>Destination</h3>
+          <button>{props.path.destination !== null ? 'Edit ' : 'Add '}Destination</button>
           
           {props.path.destination !== null ? (
             <div className='destination'>
