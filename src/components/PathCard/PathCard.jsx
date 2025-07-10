@@ -55,7 +55,7 @@ const PathCard = (props) => {
 
   const cancelHandler = () => {
     props.setSelectedPath(null)
-    setFormType('hop')
+    setFormType('')
   }
 
   const selectPath = () => {
@@ -135,22 +135,7 @@ const PathCard = (props) => {
 
       {isSelected && isEditMode && (
         <div>
-          <div className='form-switcher'>
-            <button 
-              onClick={() => handleFormSwitch('hop')} 
-              className={`hop-btn${formType === 'hop' ? ' active' : ''}`}
-            >
-                Hop
-            </button>
-
-            <button 
-              onClick={() => handleFormSwitch('destination')} 
-              className={`destination-btn${formType === 'destination' ? ' active' : ''}`}
-            >
-              Destination
-            </button>
-          </div>
-
+          {formType !== '' && (
             <form onSubmit={handleSubmit}>
               {formType === 'hop' && 
                 <div>
@@ -191,8 +176,8 @@ const PathCard = (props) => {
               }
               <button>Add</button>
             </form>
-
-            <button onClick={cancelHandler}>Cancel</button>
+          )}
+          <button onClick={cancelHandler}>Cancel</button>
         </div>
       )}
     </div>
