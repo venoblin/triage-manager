@@ -32,24 +32,30 @@ const PathCard = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    if (formType === type.HOP) {
-      appContext.postHop(
-        props.triage, 
-        props.device, 
-        props.selectedPath, 
-        hopFormState
-      )
-    } else if (formType === type.DEST) {
-      appContext.postDestination(
-        props.triage, 
-        props.device, 
-        props.selectedPath, 
-        destFormState
-      )
-    } 
+    switch (formType) {
+      case type.HOP:
+        appContext.postHop(
+          props.triage, 
+          props.device, 
+          props.selectedPath, 
+          hopFormState
+        )
+        break
+      case type.DEST:
+        appContext.postDestination(
+          props.triage, 
+          props.device, 
+          props.selectedPath, 
+          destFormState
+        )
+        setFormType('')
+        break
+      case type.PORT:
+        setFormType('')
+        break
+    }
     
     setHopFormState(hopFormInitial)
-    setDestFormState(destFormInitial)
   }
 
   const handleChange = (evt, formState, setFormState) => {
@@ -65,7 +71,11 @@ const PathCard = (props) => {
           setDestFormState({...props.path.destination})
         }
         break
-
+      case type.PORT:
+        if (props.path.port) {
+          setPortFormState({port: props.path.port})
+        }
+        break
     }
     
     setFormType(formType)
