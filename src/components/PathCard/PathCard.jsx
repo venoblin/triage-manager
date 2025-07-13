@@ -59,6 +59,15 @@ const PathCard = (props) => {
   }
 
   const handleFormSwitch = (formType) => {
+    switch (formType) {
+      case type.DEST:
+        if (props.path.destination !== null) {
+          setDestFormState({...props.path.destination})
+        }
+        break
+
+    }
+    
     setFormType(formType)
   }
 
@@ -130,7 +139,6 @@ const PathCard = (props) => {
             <div className='destination'>
               {isEditMode && isSelected &&
                 <div className='port-inputs'>
-                  <button>Edit</button>
                   <button>Delete</button>
                 </div>
               }
