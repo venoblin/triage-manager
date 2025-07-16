@@ -139,7 +139,7 @@ const PathCard = (props) => {
 
         <div className='destination-wrap'>
           <h3>Destination</h3>
-          {isEditMode && isSelected &&
+          {isEditMode && isSelected && formType !== types.DEST &&
             <button onClick={() => handleFormSwitch(types.DEST)}>
               {props.path.destination !== null ? 'Edit ' : 'Add '}Destination
             </button>
