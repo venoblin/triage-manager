@@ -112,7 +112,7 @@ const PathCard = (props) => {
         
         <div className={`hops-wrap`}>
           <h3>Hops</h3>
-          {isEditMode && isSelected &&
+          {isEditMode && isSelected && formType !== type.HOP &&
             <button onClick={() => handleFormSwitch(type.HOP)}>Add Hop</button>
           }
           
