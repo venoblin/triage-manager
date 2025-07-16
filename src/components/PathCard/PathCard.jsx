@@ -28,6 +28,7 @@ const PathCard = (props) => {
   const [hopFormState, setHopFormState] = useState(hopFormInitial)
   const [destFormState, setDestFormState] = useState(destFormInitial)
   const [formType, setFormType] = useState('')
+  const [submitBtnText, setSubmitBtnText] = useState('Add')
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
@@ -69,13 +70,19 @@ const PathCard = (props) => {
       case types.DEST:
         if (props.path.destination !== null) {
           setDestFormState({...props.path.destination})
+          setSubmitBtnText('Edit')
         }
         break
       case types.PORT:
         if (props.path.port) {
           setPortFormState({port: props.path.port})
+          setSubmitBtnText('Edit')
         }
         break
+      default:
+        if (submitBtnText === 'Edit') {
+          setSubmitBtnText('Add')
+        }
     }
     
     setFormType(formType)
@@ -217,7 +224,7 @@ const PathCard = (props) => {
                   />
                 </div>
               }
-              <button>Add</button>
+              <button>{submitBtnText}</button>
             </form>
           )}
           <button onClick={cancelHandler}>Cancel</button>
