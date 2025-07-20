@@ -1,13 +1,12 @@
 import { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../contexts/AppContext'
 import DeviceCard from '../DeviceCard/DeviceCard'
 import DevicePaths from '../DevicePaths/DevicePaths'
 import './DeviceEditor.css'
+import { Link } from 'react-router-dom'
 
 const DeviceEditor = (props) => {
   const appContext = useContext(AppContext)
-  const navigate = useNavigate()
   
   const portFormInitial = {
     port: ''
@@ -21,14 +20,10 @@ const DeviceEditor = (props) => {
     setPortFormState(portFormInitial)
   }
 
-  const addDeviceHandler = () => {
-    navigate(`new`)
-  }
-  
   return (
     <div className='DeviceEditor'>
       <div className='triage-head'>
-        <button onClick={addDeviceHandler}>Add Device</button>
+        <Link className='btn' to={'new'} state={{triage: props.triage}}>Add Device</Link>
       </div>
       
       <div className='device-editor-wrap'>
