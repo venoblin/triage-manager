@@ -1,3 +1,11 @@
-export const onSubmit = () => {}
+export const onSubmit = (evt, func) => {
+  evt.preventDefault()
 
-export const onChange = (evt, formState, setFormState) => {}
+  func()
+}
+
+export const onChange = (evt, formState, setFormState) => {
+  const target = evt.target
+  const newFormState = { ...formState, [target.name]: target.value }
+  setFormState(newFormState)
+}
