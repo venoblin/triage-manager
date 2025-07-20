@@ -11,7 +11,7 @@ const AllTriages = () => {
       {appContext.triages.length ? (
         appContext.triages.map((triage) => (
           <div className='triage-card' key={triage.id}>
-            <Link to={`/triage/${triage.id}`}>{triage.name}</Link>
+            <Link to={`/${triage.id}`}>{triage.name}</Link>
           </div>
         ))
       ) : (

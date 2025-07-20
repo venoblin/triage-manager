@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../../contexts/AppContext'
-import { LayoutContext } from '../../../contexts/LayoutContext'
 import DeviceEditor from '../../DeviceEditor/DeviceEditor'
 import './TriageRoute.css'
 

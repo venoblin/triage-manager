@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../contexts/AppContext'
 import DeviceCard from '../DeviceCard/DeviceCard'
 import DevicePaths from '../DevicePaths/DevicePaths'
@@ -6,55 +7,28 @@ import './DeviceEditor.css'
 
 const DeviceEditor = (props) => {
   const appContext = useContext(AppContext)
+  const navigate = useNavigate()
   
-  const deviceFormInitial = {
-    hostName: ''
-  }
   const portFormInitial = {
     port: ''
   }
-  const [deviceFormState, setDeviceFormState] = useState(deviceFormInitial)
   const [portFormState, setPortFormState] = useState(portFormInitial)
   const [selectedDevice, setSelectedDevice] = useState(null)
   const [selectedPath, setSelectedPath] = useState(null)
 
-  const handleDeviceSubmit = (evt) => {
-    evt.preventDefault()
-
-    appContext.postDevice(props.triage, deviceFormState)
-
-    setDeviceFormState(deviceFormInitial)
-  }
-
-  const handlePortSubmit = (evt) => {
-    evt.preventDefault()
-
+  const handlePortSubmit = () => {
     appContext.postPath(props.triage, selectedDevice, portFormState)
-
     setPortFormState(portFormInitial)
   }
 
-  const handleChange = (evt, formState, setFormState) => {
-    const target = evt.target
-    const newFormState = {...formState, [target.name]: target.value}
-    setFormState(newFormState)
+  const addDeviceHandler = () => {
+    navigate(`new`)
   }
   
   return (
     <div className='DeviceEditor'>
       <div className='triage-head'>
-        <form onSubmit={handleDeviceSubmit}>
-          <label htmlFor='hostName'>Hostname</label>
-          <input 
-            type='text'
-            name='hostName'
-            id='hostName'
-            value={deviceFormState.hostName}
-            onChange={(evt) => handleChange(evt, deviceFormState, setDeviceFormState)}
-            required
-          />
-          <button>Add Device</button>
-        </form>
+        <button onClick={addDeviceHandler}>Add Device</button>
       </div>
       
       <div className='device-editor-wrap'>
