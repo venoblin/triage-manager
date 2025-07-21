@@ -1,0 +1,31 @@
+
+.triage-head {
+  padding: 1rem;
+}
+
+.device-selector {
+  width: 350px;
+  background: black;
+}
+
+.device-editor-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.device-selector {
+  overflow: scroll;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  z-index: 10;
+}
+
+.device-editor {
+  position: fixed;
+  left: 0;
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
+  padding-left: 24rem;
+}
