@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, Routes, Route } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../../contexts/AppContext'
 import DeviceEditor from '../../DeviceEditor/DeviceEditor'
@@ -21,11 +21,9 @@ const TriageRoute = () => {
   return (
     <div className='TriageRoute'>
       {triage ? (
-        <div className='triage-wrap'>
-
-          <DeviceEditor triage={triage} />
-          
-        </div>
+        <Routes>
+          <Route path='/' element={<DeviceEditor triage={triage} />} />
+        </Routes>
       ) : (
         <h1>{`No triage found!`}</h1>
       )}
