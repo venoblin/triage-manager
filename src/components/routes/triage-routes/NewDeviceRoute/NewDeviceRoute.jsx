@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { onSubmit, onChange } from '../../../utils/form'
+import { onSubmit, onChange } from '../../../../utils/form'
 import './NewDeviceRoute.css'
 
 const NewDeviceRoute = () => {
