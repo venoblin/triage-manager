@@ -1,8 +1,12 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useContext, useState } from 'react'
 import { onSubmit, onChange } from '../../../../utils/form'
+import { AppContext } from '../../../../contexts/AppContext'
 import './NewDeviceRoute.css'
 
-const NewDeviceRoute = () => {
+const NewDeviceRoute = (props) => {
+  const appContext = useContext(AppContext)
+  const navigate = useNavigate()
   
   const deviceFormInitial = {
     hostName: ''
@@ -10,8 +14,9 @@ const NewDeviceRoute = () => {
   const [deviceFormState, setDeviceFormState] = useState(deviceFormInitial)
   
   const handleDeviceSubmit = () => {
-    // appContext.postDevice(props.triage, deviceFormState)
-    // setDeviceFormState(deviceFormInitial)
+    appContext.postDevice(props.triage, deviceFormState)
+    setDeviceFormState(deviceFormInitial)
+    navigate(`/${props.triage.id}`)
   }
   
   return (
