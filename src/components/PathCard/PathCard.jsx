@@ -44,8 +44,6 @@ const PathCard = (props) => {
         break
       case types.DEST:
         appContext.postDestination(
-          props.triage, 
-          props.device, 
           props.selectedPath, 
           destFormState
         )
