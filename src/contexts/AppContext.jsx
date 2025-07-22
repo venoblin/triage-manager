@@ -29,19 +29,33 @@ export const AppProvider = (props) => {
     setStorageItem('triages', updatedTriages)
   }
 
-  const findItem = (item) => {
+  const findItem = (type, item) => {
     const updatedTriages = [...triages]
-    
+    let foundItem = null
+
     for (let t of updatedTriages) {
       if (t.id === item.id) {
+        // Triages
+        if (type === 'triage') {
+          foundItem = t
+          break
+        }
+
         for (let d of t.devices) {
           if (d.id === item.id) {
+            // Devices
+            if (type === 'device') {
+              foundItem = d
+              break
+            }
+
             for (let p of d.paths) {
               if (p.id === item.id) {
-                p.hops.push({
-                  ...createdHop,
-                  pos: p.hops.length
-                })
+                //Paths
+                if (type === 'path') {
+                  foundItem = p
+                  break
+                }
 
                 break
               }
@@ -52,6 +66,8 @@ export const AppProvider = (props) => {
         break
       }
     }
+
+    return [foundItem, updatedTriages]
   }
 
   const postTriage = (payload) => {
